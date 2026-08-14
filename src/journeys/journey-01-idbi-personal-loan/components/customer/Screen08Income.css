@@ -1,0 +1,229 @@
+/* Customer Flow — Screen 8 (Income Details). Same card-shell/section/grid
+   conventions as Screen06Address.css/Screen07Professional.css, using only
+   the shared tokens from src/index.css — this platform's own design
+   language, not IDBI's reference styling. */
+
+.screen-income {
+  width: 100%;
+  max-width: 760px;
+}
+
+.screen-income-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-income-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.screen-income-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* ---------- Sections ----------
+   Section framing (icon/title header, card border) now comes from the
+   shared core SectionCard component — see Screen08Income.tsx. */
+
+.screen-income-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  align-items: start;
+}
+
+.screen-income-itr-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: -4px 0 0;
+}
+
+/* ---------- Inline verify field (IFSC/Account, URN) ---------- */
+
+.screen-income-verify-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.screen-income-urn-field {
+  max-width: 480px;
+}
+
+/* Compound selector so this reliably overrides the shared Button's default
+   full-width sizing regardless of CSS bundle ordering — same convention as
+   Screen05BasicInfo's "Verify" button. Targets the shared TextField's
+   `.core-input-action` slot. */
+.screen-income-verify-field .core-input-action .screen-income-verify-btn {
+  width: auto;
+  flex-shrink: 0;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+/* Verified badge now comes from the shared core Badge component
+   (variant="success") — see Screen08Income.tsx. */
+
+.screen-income-change-link {
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-family: var(--sans);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.screen-income-change-link:hover {
+  color: var(--text-h);
+  text-decoration: underline;
+}
+
+.screen-income-change-link:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- ITR fetch ---------- */
+
+.screen-income-itr-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.screen-income-itr-actions .core-btn {
+  width: auto;
+  padding: 0 24px;
+}
+
+.screen-income-itr-panel {
+  padding: 20px 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.screen-income-itr-panel--loading {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.screen-income-itr-panel--loading p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.screen-income-spinner {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border);
+  border-top-color: var(--brand-navy);
+  border-radius: 50%;
+  animation: screen-income-spin 0.8s linear infinite;
+}
+
+@keyframes screen-income-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.screen-income-itr-result-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--success-text);
+  margin: 0 0 12px;
+}
+
+.screen-income-itr-result-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.screen-income-itr-result-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.screen-income-itr-result-item dt {
+  color: var(--text-muted);
+}
+
+.screen-income-itr-result-item dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.screen-income-itr-result-note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-income-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.screen-income-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .screen-income-card {
+    padding: 32px 24px;
+  }
+
+  .screen-income-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-income-urn-field {
+    max-width: none;
+  }
+
+  .screen-income-itr-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .screen-income-actions {
+    justify-content: stretch;
+  }
+
+  .screen-income-actions .core-btn {
+    width: 100%;
+  }
+}

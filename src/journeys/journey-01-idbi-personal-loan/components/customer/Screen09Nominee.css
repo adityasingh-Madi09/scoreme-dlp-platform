@@ -1,0 +1,104 @@
+/* Customer Flow — Screen 9 (Nominee Details). Same card-shell/section/grid
+   conventions as Screen06Address.css/Screen08Income.css, using only the
+   shared tokens from src/index.css. */
+
+.screen-nominee {
+  width: 100%;
+  max-width: 760px;
+}
+
+.screen-nominee-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-nominee-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.screen-nominee-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* ---------- Sections ----------
+   Section framing (icon/title header, card border) now comes from the
+   shared core SectionCard component — see Screen09Nominee.tsx. */
+
+.screen-nominee-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  align-items: start;
+}
+
+/* ---------- Yes/No radio row ---------- */
+
+.screen-nominee-radio-row {
+  display: flex;
+  gap: 28px;
+}
+
+.screen-nominee-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.screen-nominee-radio-option input[type='radio'] {
+  width: 17px;
+  height: 17px;
+  accent-color: var(--brand-navy);
+  cursor: pointer;
+}
+
+.screen-nominee-radio-option input[type='radio']:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-nominee-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.screen-nominee-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .screen-nominee-card {
+    padding: 32px 24px;
+  }
+
+  .screen-nominee-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-nominee-actions {
+    justify-content: stretch;
+  }
+
+  .screen-nominee-actions .core-btn {
+    width: 100%;
+  }
+}

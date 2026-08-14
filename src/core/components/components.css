@@ -1,0 +1,421 @@
+/* Shared UI primitives (core, generic). Uses only the fintech-professional
+   tokens already defined in src/index.css (--brand-*, --border, --error,
+   --focus-ring, etc.) — no colors are invented here. These rules were
+   previously duplicated near-identically inside GateView.css and
+   AuthModal.css; both now consume this single source instead.
+
+   Visual contract (unchanged from the original hand-rolled markup):
+   - 44px-tall text inputs, 6px radius, 1px border, focus-visible ring.
+   - 46px-tall, full-width, 6px-radius buttons.
+   - 13.5px error text on a tinted error background. */
+
+/* ---------- TextField ---------- */
+
+.core-field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.core-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.core-label-required {
+  color: var(--error-text);
+  margin-left: 2px;
+}
+
+.core-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: var(--text-h);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.core-input:focus-visible {
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgba(47, 92, 224, 0.15);
+}
+
+.core-input[aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.core-input:disabled {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+.core-select {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  font-size: 15px;
+  color: var(--text-h);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  appearance: auto;
+}
+
+.core-select:focus-visible {
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgba(47, 92, 224, 0.15);
+}
+
+.core-select[aria-invalid='true'] {
+  border-color: var(--error);
+}
+
+.core-select:disabled {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+/* Wraps the input + optional trailing `action` slot (e.g. a "Verify"
+   button) on one row. Only rendered when TextField receives an `action`
+   prop, so fields without one are unaffected. */
+.core-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.core-input-row .core-input {
+  flex: 1;
+}
+
+.core-input-action {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.core-field-error {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+/* Form-level error banner (e.g. "credentials incorrect") shared by Gate
+   and AuthModal — visually identical to .core-field-error, kept as a
+   separate class since it is not scoped to a single field. */
+.core-form-error {
+  margin: 0;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: var(--radius-sm);
+  text-align: left;
+}
+
+/* ---------- Button ---------- */
+
+.core-btn {
+  width: 100%;
+  height: 46px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.core-btn:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.core-btn--primary {
+  color: #ffffff;
+  background: var(--btn-primary-bg, var(--brand-navy));
+  border-color: transparent;
+}
+
+.core-btn--primary:hover:not(:disabled) {
+  background: var(
+    --btn-primary-bg-hover,
+    color-mix(in srgb, var(--brand-navy) 85%, black)
+  );
+}
+
+.core-btn--secondary {
+  color: var(--text-h);
+  background: transparent;
+  border-color: var(--border);
+}
+
+.core-btn--secondary:hover:not(:disabled) {
+  background: var(--bg);
+}
+
+.core-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- Badge ---------- */
+
+.core-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  height: 22px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.core-badge--neutral {
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.core-badge--info {
+  color: var(--brand-navy);
+  background: color-mix(in srgb, var(--brand-navy) 8%, white);
+  border: 1px solid color-mix(in srgb, var(--brand-navy) 22%, white);
+}
+
+.core-badge--success {
+  color: var(--success-text);
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+}
+
+/* ---------- SectionCard (v2: colored-ribbon divider) ----------
+   No own border/shadow/radius — these compose as siblings inside one
+   continuous `.jl-long-form-card` (see JourneyLayout.css), separated only
+   by the ribbon + a bottom border, so a multi-section screen reads as one
+   long form rather than a grid of separate boxes. */
+
+.core-section-card {
+  border-bottom: 1px solid var(--border);
+  /* Offsets anchor-jump targets (from SectionQuickNav pills) so the
+     ribbon heading doesn't land hidden under the sticky quick-nav bar. */
+  scroll-margin-top: 52px;
+}
+
+.core-section-card:last-child {
+  border-bottom: none;
+}
+
+.core-section-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 22px;
+  background: color-mix(in srgb, var(--brand-navy) 4%, var(--bg));
+  border-left: 3px solid var(--brand-navy);
+  transition: background-color 0.5s ease;
+}
+
+/* ---------- SectionQuickNav ----------
+   Sticky jump bar rendered as the first child inside `.jl-long-form-card`
+   on multi-section screens. Sticks to the top of the scrollable main
+   content once the ribbon title above it scrolls out of view. */
+.core-section-quicknav {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.core-section-quicknav-pill {
+  flex-shrink: 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-muted);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.core-section-quicknav-pill:hover,
+.core-section-quicknav-pill:focus-visible {
+  border-color: var(--brand-navy);
+  color: var(--brand-navy);
+}
+
+.core-section-ribbon-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.core-section-ribbon-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--brand-navy);
+}
+
+.core-section-ribbon-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--brand-navy);
+  white-space: nowrap;
+}
+
+.core-section-ribbon-desc {
+  font-size: 12px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.core-section-ribbon-action {
+  flex-shrink: 0;
+}
+
+.core-section-card-body {
+  padding: 20px 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ---------- Checkbox ---------- */
+
+.core-checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  text-align: left;
+}
+
+.core-checkbox-input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  accent-color: var(--brand-navy);
+  cursor: pointer;
+}
+
+.core-checkbox-input:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.core-checkbox-label {
+  font-size: 13.5px;
+  color: var(--text);
+  cursor: pointer;
+}
+
+/* Platform-wide fallback: any raw native checkbox/radio NOT going through
+   the shared Checkbox component above (e.g. a Yes/No radio group) still
+   gets tinted to match the brand instead of the browser's default blue.
+   This is a safety net, not the primary path — prefer the Checkbox
+   component or an explicit accent-color where a radio group is needed. */
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: var(--brand-navy);
+}
+
+/* ---------- OtpInput ----------
+   Digit-box OTP entry (promoted from journey-01-local to core so it can be
+   shared by OtpModal). Mirrors TextField's visual language (44px-ish
+   control height, 6px radius, --border outline, --focus-ring focus state)
+   sized specifically for single-character boxes. */
+
+.otp-input-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 4px 0;
+}
+
+.otp-input-box {
+  width: 46px;
+  height: 52px;
+  padding: 0;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: var(--sans);
+  text-align: center;
+  color: var(--text-h);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.otp-input-box:focus-visible {
+  border-color: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgba(47, 92, 224, 0.15);
+}
+
+.otp-input-group--error .otp-input-box {
+  border-color: var(--error);
+}
+
+.otp-input-box:disabled {
+  background: var(--bg);
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+@media (max-width: 428px) {
+  .otp-input-group {
+    gap: 8px;
+  }
+
+  .otp-input-box {
+    width: 38px;
+    height: 46px;
+    font-size: 18px;
+  }
+}

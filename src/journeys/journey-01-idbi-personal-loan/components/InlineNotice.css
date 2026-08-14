@@ -1,0 +1,16 @@
+/* InlineNotice — restrained info-tone banner (journey-local). Uses the
+   shared --brand-sky/--brand-navy tokens from src/index.css for an
+   "informational", non-error tone (kept visually distinct from
+   .core-field-error's red error tone). */
+
+.inline-notice {
+  margin: 0;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--brand-navy);
+  background: rgba(79, 195, 247, 0.14);
+  border: 1px solid rgba(79, 195, 247, 0.45);
+  border-radius: 6px;
+  text-align: left;
+}

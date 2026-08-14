@@ -1,0 +1,130 @@
+/* OtpModal — core, generic pop-up for every OTP moment on the platform
+   (mobile, identity, email, final confirmation). Deliberately mirrors
+   AuthModal.css's backdrop/card/close-button chrome exactly, so a customer
+   sees one consistent "pop-up" pattern throughout the journey rather than
+   two different modal styles. Uses only the shared brand + surface tokens
+   from src/index.css — no colors invented here. */
+
+.otp-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(11, 30, 69, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.otp-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  padding: 44px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.otp-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.otp-modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.otp-modal-close:hover {
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.otp-modal-close:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.otp-modal-title {
+  font-size: var(--font-size-lg);
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.otp-modal-subtitle {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  margin-bottom: 22px;
+}
+
+.otp-modal-error {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--error-text);
+}
+
+.otp-modal-success {
+  margin: 14px 0 0;
+  font-size: 12.5px;
+  color: var(--success-text);
+}
+
+.otp-modal-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.otp-modal-verify.core-btn {
+  width: 100%;
+}
+
+.otp-modal-resend {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  cursor: pointer;
+}
+
+.otp-modal-resend:disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
+}
+
+@media (max-width: 428px) {
+  .otp-modal-card {
+    padding: 36px 24px 28px;
+  }
+
+  .otp-modal-title {
+    font-size: 17px;
+  }
+}

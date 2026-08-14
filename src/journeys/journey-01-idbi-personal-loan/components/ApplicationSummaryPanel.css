@@ -1,0 +1,177 @@
+/* Right-rail "Application Summary" card — v2 (avatar + progress ring +
+   icon rows + mini checklist). Uses only the shared surface/border/shadow/
+   text tokens from src/index.css + src/core/theme.css — no colors
+   invented here. Hidden entirely below 1200px viewport width (see
+   JourneyLayout.css's .jl-summary-rail media rule); this card is never the
+   only way to see this information, just a convenience at desktop widths. */
+
+.app-summary-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: var(--shadow-card);
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-summary-panel-top {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 16px;
+}
+
+.app-summary-panel-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.app-summary-panel-top-text {
+  min-width: 0;
+}
+
+.app-summary-panel-name {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--text-h);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.app-summary-panel-role {
+  margin: 2px 0 0;
+  font-size: 10.5px;
+  color: var(--text-muted);
+}
+
+.app-summary-panel-ring-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 10px);
+  margin-bottom: 14px;
+}
+
+.app-summary-panel-ring-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-summary-panel-ring-pct {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.app-summary-panel-ring-label {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.app-summary-panel-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.app-summary-panel-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.app-summary-panel-row:last-child {
+  border-bottom: none;
+}
+
+.app-summary-panel-row-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--brand-navy);
+}
+
+.app-summary-panel-row dt {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.app-summary-panel-row dd {
+  margin: 2px 0 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-h);
+  word-break: break-word;
+}
+
+.app-summary-panel-checklist {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.app-summary-panel-checklist-title {
+  margin: 0 0 8px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.app-summary-panel-checklist-item {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 3px 0;
+  font-size: 12px;
+  color: var(--success-text);
+}
+
+.app-summary-panel-checklist-dot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--success);
+  color: #fff;
+  font-size: 8px;
+}
+
+.app-summary-panel-checklist-empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}

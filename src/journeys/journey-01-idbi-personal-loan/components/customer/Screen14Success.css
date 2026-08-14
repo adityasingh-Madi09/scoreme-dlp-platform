@@ -1,0 +1,191 @@
+/* Customer Flow — Screen 14 (Success). Reference:
+   design_assets/journey-idbi-personal-loan/customer/IDBI_PLJ_S_11.png for
+   content/structure only — restyled entirely in this platform's own design
+   language (card-shell conventions already established by
+   Screen10LoanOffer.css/Screen11Liveliness.css), using only the shared
+   tokens from src/index.css, not IDBI's reference styling. The badge/
+   confetti visual is plain inline SVG + CSS — no image asset. */
+
+.screen-success {
+  width: 100%;
+  max-width: 560px;
+}
+
+.screen-success-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+/* ---------- Badge + confetti ---------- */
+
+.screen-success-badge-wrap {
+  width: 100%;
+  max-width: 260px;
+}
+
+.screen-success-badge-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.screen-success-badge-ring {
+  fill: none;
+  stroke: rgba(11, 30, 69, 0.12);
+  stroke-width: 3;
+}
+
+.screen-success-badge-fill {
+  fill: var(--success);
+}
+
+.screen-success-badge-check {
+  stroke: #ffffff;
+  stroke-width: 6;
+}
+
+.screen-success-confetti {
+  animation: screen-success-confetti-pop 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.screen-success-confetti-1 {
+  fill: var(--brand-orange);
+  animation-delay: 0s;
+}
+
+.screen-success-confetti-2 {
+  fill: var(--brand-sky);
+  animation-delay: 0.2s;
+}
+
+.screen-success-confetti-3 {
+  fill: var(--brand-navy);
+  animation-delay: 0.4s;
+}
+
+.screen-success-confetti-4 {
+  fill: var(--brand-sky);
+  animation-delay: 0.1s;
+}
+
+.screen-success-confetti-5 {
+  fill: var(--brand-orange);
+  animation-delay: 0.3s;
+}
+
+.screen-success-confetti-6 {
+  fill: var(--brand-navy);
+  animation-delay: 0.5s;
+}
+
+.screen-success-confetti-7 {
+  fill: var(--brand-sky);
+  animation-delay: 0.25s;
+}
+
+.screen-success-confetti-8 {
+  fill: var(--brand-orange);
+  animation-delay: 0.45s;
+}
+
+@keyframes screen-success-confetti-pop {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-success-confetti {
+    animation: none;
+  }
+}
+
+/* ---------- Copy ---------- */
+
+.screen-success-heading {
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+  color: var(--text-h);
+  margin-top: 12px;
+}
+
+.screen-success-body {
+  font-size: 13.5px;
+  line-height: 160%;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 4px;
+  max-width: 420px;
+}
+
+/* ---------- Application ID ---------- */
+
+.screen-success-application-id {
+  margin-top: 20px;
+  padding: 14px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.screen-success-application-id-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.screen-success-application-id-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-success-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.screen-success-actions .core-btn {
+  width: auto;
+  padding: 0 28px;
+}
+
+@media (max-width: 640px) {
+  .screen-success-card {
+    padding: 32px 24px;
+  }
+
+  .screen-success-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .screen-success-actions .core-btn {
+    width: 100%;
+  }
+}

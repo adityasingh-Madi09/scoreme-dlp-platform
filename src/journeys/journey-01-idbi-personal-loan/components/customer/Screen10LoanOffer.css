@@ -1,0 +1,198 @@
+/* Customer Flow — Screen 10 (Loan Offer). Reference:
+   design_assets/journey-idbi-personal-loan/customer/IDBI_PLJ_S_7.png for
+   content/structure only — restyled entirely in this platform's own design
+   language (card-shell/section conventions already established by
+   Screen06Address.css/Screen08Income.css/Screen09Nominee.css), using only
+   the shared tokens from src/index.css, not IDBI's reference styling. */
+
+.screen-loan-offer {
+  width: 100%;
+  max-width: 760px;
+}
+
+.screen-loan-offer-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-loan-offer-heading {
+  font-size: 22px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.screen-loan-offer-greeting {
+  font-size: 14px;
+  color: var(--text);
+  margin-top: 12px;
+  margin-bottom: 8px;
+}
+
+.screen-loan-offer-greeting strong {
+  color: var(--text-h);
+}
+
+/* ---------- Sanction date / processing fee meta row ---------- */
+
+.screen-loan-offer-meta-row {
+  display: flex;
+  gap: 40px;
+  margin: 12px 0 20px;
+}
+
+.screen-loan-offer-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.screen-loan-offer-meta-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.screen-loan-offer-meta-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+/* ---------- Loan terms tiles ---------- */
+
+.screen-loan-offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.screen-loan-offer-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.screen-loan-offer-tile-label {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.screen-loan-offer-tile-value {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+.screen-loan-offer-disclaimer {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 10px 0 0;
+}
+
+/* ---------- Key Fact Statement ----------
+   Outer card chrome (background/border/padding) now comes from the shared
+   SectionCard wrapper in the .tsx — only the inner content rules remain
+   here. */
+
+.screen-loan-offer-kfs-apr {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.screen-loan-offer-kfs-apr-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.screen-loan-offer-kfs-apr-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.screen-loan-offer-kfs-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.screen-loan-offer-kfs-line a {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-loan-offer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.screen-loan-offer-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+/* Destructive-styled Reject button — built as a journey-local override of
+   the shared secondary Button variant (via its `className` prop) rather
+   than adding a new variant to the shared core Button, per CLAUDE.md rule
+   2. Uses only the shared `--error`/`--error-bg` tokens from src/index.css. */
+.screen-loan-offer-reject-btn.core-btn--secondary {
+  color: var(--error-text);
+  border-color: var(--error);
+}
+
+.screen-loan-offer-reject-btn.core-btn--secondary:hover:not(:disabled) {
+  background: var(--error-bg);
+}
+
+/* ---------- Rejected terminal state ---------- */
+
+.screen-loan-offer-rejected .screen-loan-offer-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 24px;
+}
+
+.screen-loan-offer-rejected .screen-loan-offer-actions {
+  justify-content: flex-start;
+}
+
+@media (max-width: 640px) {
+  .screen-loan-offer-card {
+    padding: 32px 24px;
+  }
+
+  .screen-loan-offer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-loan-offer-meta-row {
+    gap: 24px;
+  }
+
+  .screen-loan-offer-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .screen-loan-offer-actions .core-btn {
+    width: 100%;
+  }
+}

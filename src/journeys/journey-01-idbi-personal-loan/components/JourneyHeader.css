@@ -1,0 +1,43 @@
+/* JourneyHeader — persistent top bar (journey-local). Uses only the shared
+   tokens from src/index.css — no colors invented here. */
+
+.journey-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 40px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.journey-header-main {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.journey-header-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brand-navy);
+}
+
+/* Compound selector (not just `.journey-header-exit`) so this reliably
+   overrides the shared Button's default full-width sizing regardless of
+   CSS bundle ordering. */
+.journey-header .journey-header-exit {
+  width: auto;
+  height: 36px;
+  padding: 0 18px;
+  font-size: 13.5px;
+}
+
+@media (max-width: 640px) {
+  .journey-header {
+    padding: 14px 20px;
+  }
+}

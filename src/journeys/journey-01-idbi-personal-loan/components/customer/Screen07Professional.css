@@ -1,0 +1,109 @@
+/* Customer Flow — Screen 7 (Professional/Employment details). Reference:
+   design_assets/journey-idbi-personal-loan/customer/IDBI_PLJ_S_4-7.png
+   (fields only — this platform's own design language, not IDBI's
+   green/stock-photo styling). Same card shell/grid conventions as
+   Screen05BasicInfo.css/Screen06Address.css, using only the shared tokens
+   from src/index.css. */
+
+.screen-professional {
+  width: 100%;
+  max-width: 760px;
+}
+
+.screen-professional-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-professional-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.screen-professional-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+/* ---------- Occupation Type chip row ---------- */
+
+.screen-professional-occupation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.screen-professional-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Compound selector so this reliably overrides the shared Button's default
+   full-width sizing regardless of CSS bundle ordering — same convention as
+   `.screen-basic-info-email-field .core-input-action .screen-basic-info-verify-btn`. */
+.screen-professional-chip-row .core-btn.screen-professional-chip {
+  width: auto;
+  flex: 1 1 130px;
+  height: 42px;
+  padding: 0 16px;
+  font-size: 13.5px;
+}
+
+/* ---------- Form grid ----------
+   2 columns, not 3 — several labels here ("Office Flat No & Building
+   Name", "No of Years in Current Organisation") are long enough that a 3rd
+   column left them visually cramped for no real density benefit (same
+   reasoning as Screen05BasicInfo's grid). */
+
+.screen-professional-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 24px;
+  align-items: start;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-professional-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.screen-professional-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .screen-professional-card {
+    padding: 32px 24px;
+  }
+
+  .screen-professional-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-professional-chip-row .core-btn.screen-professional-chip {
+    flex: 1 1 45%;
+  }
+
+  .screen-professional-actions {
+    justify-content: stretch;
+  }
+
+  .screen-professional-actions .core-btn {
+    width: 100%;
+  }
+}

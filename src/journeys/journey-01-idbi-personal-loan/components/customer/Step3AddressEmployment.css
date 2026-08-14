@@ -1,0 +1,96 @@
+/* Step 3 — Address & Employment. Layout chrome (ribbon title, long-form
+   card, section ribbons, quick-nav) comes from JourneyLayout/SectionCard/
+   SectionQuickNav — this file only styles content specific to this
+   screen's four sections. */
+
+.step3-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+}
+
+@media (max-width: 640px) {
+  .step3-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step3-upload-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  margin: 4px 0 0;
+}
+
+.step3-file-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.step3-file-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.step3-file-btn {
+  width: auto;
+  padding: 0 20px;
+}
+
+.step3-file-remove {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--error, #d64545);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.step3-file-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.step3-occupation-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step3-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.step3-chip {
+  width: auto;
+  padding: 0 16px;
+  height: 34px;
+}
+
+.step3-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.step3-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}

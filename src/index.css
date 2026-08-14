@@ -1,0 +1,90 @@
+:root {
+  /* Fintech-professional light theme tokens (shared global infra) */
+  /* --text: generic body text color — has no theme.css equivalent
+     (theme.css only defines --color-text-primary/-secondary/-muted, none
+     of which match this value); intentional standalone exception. */
+  --text: #33394a;
+  --text-h: var(--color-navy-900);
+  --text-muted: var(--color-text-secondary);
+  --bg: var(--color-bg);
+  --surface: var(--color-surface);
+  --border: var(--color-border);
+  /* --focus-ring: no theme.css equivalent (theme.css defines no focus/ring
+     token); intentional standalone exception. */
+  --focus-ring: #2f5ce0;
+  --error: var(--color-error);
+  --error-bg: var(--color-error-bg);
+  --success: var(--color-success);
+  --success-bg: var(--color-success-bg);
+  /* --success-border: no theme.css equivalent (theme.css defines no
+     success-border token); intentional standalone exception. */
+  --success-border: #bfe8cf;
+  /* Text-only derivatives: --error/--success are mandated exact values and
+     pass WCAG for non-text uses (icon fills, badge chips, borders, ≥3:1),
+     but fail 4.5:1 as TEXT color on --error-bg/--success-bg and white.
+     These darker mixes are for TEXT color only — never use for
+     backgrounds, fills, icons, or borders. Verified ≥4.5:1 against both
+     white and their respective *-bg tokens. Now derive through the
+     aliased --error/--success above, which resolve to theme.css's
+     --color-error/--color-success — no change needed here. */
+  --error-text: color-mix(in srgb, var(--error) 80%, black);
+  --success-text: color-mix(in srgb, var(--success) 75%, black);
+
+  /* Brand identity tokens (shared across screens) */
+  --brand-navy: var(--color-navy-900);
+  --brand-orange: var(--color-accent);
+  /* Decorative-only exception: --brand-sky is NOT part of the official
+     8-token palette. It is kept solely for existing decorative accents
+     (e.g. Gate screen confetti/blobs) per user decision — do not retire
+     it, and do not introduce any new usage of it. It predates theme.css
+     and has no equivalent token there. */
+  --brand-sky: #4fc3f7;
+
+  --sans:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  font: 16px/150% var(--sans);
+  color-scheme: light;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  min-height: 100svh;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2 {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--text-h);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: var(--sans);
+}
+
+input {
+  font-family: var(--sans);
+}

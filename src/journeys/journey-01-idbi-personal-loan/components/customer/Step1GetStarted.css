@@ -1,0 +1,56 @@
+/* Step 1 — Get Started. Layout chrome (ribbon title, long-form card,
+   section ribbons) all comes from JourneyLayout/SectionCard — this file
+   only styles content specific to this screen's two sections. */
+
+.step1-change-link {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  margin-top: -8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.step1-features-list {
+  margin: 0;
+  padding: 0 0 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.step1-features-list li {
+  line-height: 145%;
+}
+
+.step1-secondary-actions {
+  display: flex;
+  gap: 24px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.step1-secondary-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.step1-secondary-link:hover {
+  color: var(--brand-navy);
+}
+
+.step1-notice-wrap {
+  padding: 0 22px 16px;
+}

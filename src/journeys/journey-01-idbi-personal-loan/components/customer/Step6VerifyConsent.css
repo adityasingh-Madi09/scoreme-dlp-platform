@@ -1,0 +1,192 @@
+/* Step 6 — Verify & Consent. Layout chrome (ribbon title, long-form card,
+   section ribbons, quick-nav) comes from JourneyLayout/SectionCard/
+   SectionQuickNav — this file only styles content specific to this
+   screen's three progressively-revealed sections. */
+
+.step6-subtext {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: -4px 0 4px;
+  line-height: 150%;
+}
+
+/* ---------- Liveliness ---------- */
+
+.step6-liveliness-consent {
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.step6-liveliness-consent-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.step6-liveliness-consent .core-btn {
+  width: auto;
+  align-self: flex-start;
+  padding: 0 28px;
+}
+
+.step6-liveliness-preview-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.step6-liveliness-preview {
+  position: relative;
+  width: 280px;
+  height: 210px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--brand-navy);
+  border: 1px solid var(--border);
+}
+
+.step6-liveliness-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.step6-liveliness-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.step6-liveliness-complete-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 30, 69, 0.55);
+  color: var(--success);
+}
+
+.step6-liveliness-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-h);
+  min-height: 20px;
+}
+
+.step6-spinner {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--border);
+  border-top-color: var(--brand-navy);
+  border-radius: 50%;
+  animation: step6-spin 0.8s linear infinite;
+}
+
+@keyframes step6-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Terms panel ---------- */
+
+.step6-terms-panel {
+  margin-top: 4px;
+  height: 220px;
+  overflow-y: auto;
+  padding: 18px 20px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  font-size: 12.5px;
+  line-height: 165%;
+  color: var(--text);
+}
+
+.step6-terms-panel:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.step6-terms-panel p {
+  margin: 0 0 12px;
+}
+
+.step6-terms-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.step6-terms-doc-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.step6-terms-doc-section-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-top: 16px !important;
+}
+
+.step6-terms-panel p.step6-terms-doc-section-title:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* ---------- Final confirmation ---------- */
+
+.step6-confirm-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.step6-confirm-actions .core-btn {
+  width: auto;
+  padding: 0 28px;
+}
+
+.step6-cancel-link {
+  margin-top: 10px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.step6-cancel-link:hover {
+  color: var(--text-h);
+  text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+  .step6-liveliness-preview {
+    width: 100%;
+    max-width: 280px;
+  }
+}

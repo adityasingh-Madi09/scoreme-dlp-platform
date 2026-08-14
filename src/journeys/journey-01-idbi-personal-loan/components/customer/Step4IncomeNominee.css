@@ -1,0 +1,168 @@
+/* Step 4 — Income & Nominee. Layout chrome (ribbon title, long-form card,
+   section ribbons, quick-nav) comes from JourneyLayout/SectionCard/
+   SectionQuickNav — this file only styles content specific to this
+   screen's five sections. */
+
+.step4-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px 20px;
+}
+
+@media (max-width: 640px) {
+  .step4-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step4-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: -4px 0 4px;
+}
+
+.step4-verify-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.step4-change-link {
+  align-self: flex-start;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.step4-itr-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+.step4-itr-actions .core-btn {
+  width: auto;
+  padding: 0 24px;
+}
+
+.step4-itr-panel {
+  margin-top: 14px;
+  padding: 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step4-itr-panel--loading {
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.step4-itr-panel--loading p {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.step4-spinner {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border);
+  border-top-color: var(--brand-navy);
+  border-radius: 50%;
+  animation: step4-spin 0.8s linear infinite;
+}
+
+@keyframes step4-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.step4-itr-result-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--success-text);
+  margin: 0 0 12px;
+}
+
+.step4-itr-result-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step4-itr-result-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13.5px;
+}
+
+.step4-itr-result-item dt {
+  color: var(--text-muted);
+}
+
+.step4-itr-result-item dd {
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.step4-itr-result-note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.step4-radio-row {
+  display: flex;
+  gap: 28px;
+  margin-bottom: 4px;
+}
+
+.step4-radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+.step4-radio-option input[type='radio'] {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+}
+
+.step4-radio-option input[type='radio']:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.step4-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.step4-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}

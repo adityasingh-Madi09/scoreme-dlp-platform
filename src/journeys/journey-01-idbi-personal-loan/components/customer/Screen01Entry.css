@@ -1,0 +1,87 @@
+/* Customer Flow — Screen 1 (Entry). Card layout matching the platform's
+   established card conventions (Gate/Hub/AuthModal). Uses only the shared
+   tokens from src/index.css. */
+
+.screen-entry {
+  width: 100%;
+  max-width: 640px;
+}
+
+.screen-entry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Replaces the old screen-local <h1> (removed — JourneyLayout's own page
+   title already says "Entry" above this card, so a second, larger heading
+   here just repeated the idea). This is the marketing lead sentence,
+   styled a step down from a competing page title. */
+.screen-entry-lead {
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+  color: var(--text-h);
+  margin: 0;
+}
+
+.screen-entry-subtext {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.screen-entry-features-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-h);
+  margin-bottom: 12px;
+}
+
+.screen-entry-features-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.screen-entry-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--text);
+}
+
+.screen-entry-feature-icon {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  margin-top: 1px;
+  color: var(--brand-orange);
+}
+
+.screen-entry-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 640px) {
+  .screen-entry-card {
+    padding: 32px 24px;
+    gap: 24px;
+  }
+
+  .screen-entry-lead {
+    font-size: 16px;
+  }
+}

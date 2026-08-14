@@ -1,0 +1,36 @@
+/* Customer Flow — fallback "more screens coming soon" placeholder only.
+   The step shell itself now comes from core's `JourneyLayout`
+   (src/core/components/JourneyLayout.tsx/.css) — see
+   `CustomerFlowContainer.tsx`. Uses only the shared tokens from
+   src/index.css. */
+
+.customer-flow-placeholder {
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 48px 40px;
+}
+
+.customer-flow-placeholder-heading {
+  font-size: 20px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.customer-flow-placeholder-text {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+@media (max-width: 640px) {
+  .customer-flow-placeholder {
+    padding: 32px 24px;
+  }
+}

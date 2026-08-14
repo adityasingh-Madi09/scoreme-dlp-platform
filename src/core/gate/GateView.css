@@ -1,0 +1,319 @@
+/* Screen 1 — Access Gate. Split-screen layout: branded navy panel on the
+   left, functional form panel on the right. Desktop-first (primary:
+   1440px / 1920px), with tablet (~769-1024px) and mobile (≤768px)
+   adjustments below. The mobile view drops the brand panel entirely and
+   restores the original single-column centered-form experience.
+
+   Brand palette (--brand-navy/--brand-orange/--brand-sky) is a shared
+   platform-wide token set defined in src/index.css, sampled against
+   design_assets/Scorme_Logo-removebg-preview.png. Only the derived,
+   Gate-panel-specific on-navy text colors stay scoped here. */
+
+.gate-screen {
+  --gate-on-navy: #ffffff;
+  --gate-on-navy-muted: rgba(255, 255, 255, 0.86);
+
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  min-height: 100svh;
+}
+
+/* ---------- Brand panel (left) ---------- */
+
+.gate-brand {
+  flex: 0 0 58%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 64px 72px;
+  background-color: var(--brand-navy);
+  /* Dot-grid pattern + two soft gradient "blobs" — pure CSS, no image
+     assets. Blob opacity/spread raised (+0.08 each) over the original pass
+     so the panel reads as visually rich rather than flat at desktop
+     widths, while staying well short of a loud/gaudy effect. */
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.07) 1.4px,
+      transparent 1.4px
+    ),
+    radial-gradient(
+      circle at 14% 20%,
+      color-mix(in srgb, var(--brand-orange) 40%, transparent) 0%,
+      color-mix(in srgb, var(--brand-orange) 0%, transparent) 48%
+    ),
+    radial-gradient(
+      circle at 88% 84%,
+      color-mix(in srgb, var(--brand-sky) 34%, transparent) 0%,
+      color-mix(in srgb, var(--brand-sky) 0%, transparent) 54%
+    );
+  background-size: 26px 26px, auto, auto;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+
+/* Abstract network/connectivity accent graphic — sits behind the text
+   content (z-index below `.gate-brand-content`), positioned to the right
+   so it never overlaps the logo chip or tagline. Purely decorative. */
+.gate-brand-accent {
+  position: absolute;
+  top: 50%;
+  right: -48px;
+  width: 400px;
+  height: 400px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.gate-brand-content {
+  position: relative;
+  z-index: 1;
+  max-width: 420px;
+}
+
+.gate-brand-logo-chip {
+  display: inline-flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 14px 22px;
+  margin-bottom: 40px;
+}
+
+.gate-brand-logo {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.gate-brand-tagline {
+  font-size: 20px;
+  line-height: 140%;
+  font-weight: 500;
+  letter-spacing: -0.1px;
+  color: var(--gate-on-navy-muted);
+  margin: 0;
+}
+
+/* Trust/feature strip — short enterprise-appropriate markers beneath the
+   tagline, each with a small stroke-based icon. */
+.gate-brand-trust {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.gate-brand-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.gate-brand-trust-icon {
+  flex-shrink: 0;
+  width: 17px;
+  height: 17px;
+  color: rgba(79, 195, 247, 0.85);
+}
+
+/* ---------- Form panel (right) ---------- */
+
+.gate-form-panel {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  border-left: 1px solid var(--border);
+  padding: 48px 24px;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* The form panel's own logo is redundant with the brand panel's logo, so it
+   stays hidden whenever the brand panel is visible (i.e. above the ≤768px
+   breakpoint), and is restored for the single-column mobile layout below. */
+.gate-logo {
+  display: none;
+  height: 40px;
+  width: auto;
+  margin-bottom: 32px;
+}
+
+.gate-title {
+  font-size: var(--font-size-lg);
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.gate-subtitle {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.gate-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* .gate-field / .gate-label / .gate-input / .gate-error were identical to
+   the shared .core-field / .core-label / .core-input / .core-form-error
+   rules now in src/core/components/components.css (via TextField) — moved
+   there to avoid duplication. Only this Gate-specific button color
+   override remains, since Gate's submit button uses --text-h rather than
+   the shared Button primitive's default brand-navy fill. */
+.gate-submit {
+  margin-top: 4px;
+  --btn-primary-bg: var(--text-h);
+  --btn-primary-bg-hover: color-mix(in srgb, var(--brand-navy) 85%, black);
+}
+
+/* Transitional zone — between the primary desktop layout and the tablet
+   breakpoint (below), the brand panel has already narrowed noticeably
+   (flex-basis is a % of a shrinking viewport) but the accent graphic was
+   still rendering at its full fixed size, crowding the trust-strip text
+   right up until it's hidden entirely at ≤1024px. Step it down here so it
+   shrinks gracefully instead of vanishing abruptly. */
+@media (max-width: 1200px) {
+  .gate-brand-accent {
+    width: 280px;
+    height: 280px;
+    right: -70px;
+  }
+}
+
+/* Tablet — brand panel narrows and its decoration simplifies (dot-grid
+   dropped, single softer gradient wash retained). */
+@media (max-width: 1024px) {
+  .gate-brand {
+    flex: 0 0 42%;
+    padding: 48px 40px;
+    background-image:
+      radial-gradient(
+        circle at 20% 20%,
+        color-mix(in srgb, var(--brand-orange) 36%, transparent) 0%,
+        color-mix(in srgb, var(--brand-orange) 0%, transparent) 56%
+      ),
+      radial-gradient(
+        circle at 90% 90%,
+        color-mix(in srgb, var(--brand-sky) 32%, transparent) 0%,
+        color-mix(in srgb, var(--brand-sky) 0%, transparent) 60%
+      );
+    background-size: auto, auto;
+  }
+
+  /* Space is tight at tablet widths — simplify to logo + tagline + blobs
+     only, dropping the network accent graphic and trust strip. */
+  .gate-brand-accent,
+  .gate-brand-trust {
+    display: none;
+  }
+
+  .gate-brand-content {
+    max-width: 320px;
+  }
+
+  .gate-brand-logo-chip {
+    padding: 12px 18px;
+    margin-bottom: 28px;
+  }
+
+  .gate-brand-tagline {
+    font-size: 17px;
+  }
+
+  .gate-card {
+    max-width: 400px;
+    padding: 40px 32px;
+  }
+}
+
+/* Mobile — brand panel is removed entirely; the form panel returns to the
+   original full-width, centered, single-column experience. */
+@media (max-width: 768px) {
+  .gate-brand {
+    display: none;
+  }
+
+  .gate-form-panel {
+    border-left: none;
+  }
+
+  .gate-logo {
+    display: block;
+  }
+}
+
+/* Tall desktop viewports (1920x1080-class and similar) — the dot-grid
+   already tiles across the panel's full height, but the two ambient
+   gradient blobs sit close enough to the vertically-centered content band
+   that the top and bottom thirds of a tall panel read as comparatively
+   bare. Push the same two blobs further into their respective corners
+   (top-left / bottom-right) and widen their spread slightly so the full
+   panel height reads as intentionally composed. Scoped to desktop widths
+   too, so it never fights the simplified tablet background above. */
+@media (min-width: 1025px) and (min-height: 900px) {
+  .gate-brand {
+    background-image:
+      radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.07) 1.4px,
+        transparent 1.4px
+      ),
+      radial-gradient(
+        circle at 10% 10%,
+        color-mix(in srgb, var(--brand-orange) 40%, transparent) 0%,
+        color-mix(in srgb, var(--brand-orange) 0%, transparent) 56%
+      ),
+      radial-gradient(
+        circle at 92% 92%,
+        color-mix(in srgb, var(--brand-sky) 34%, transparent) 0%,
+        color-mix(in srgb, var(--brand-sky) 0%, transparent) 60%
+      );
+  }
+}
+
+/* Small phones — fine typography/spacing tweaks. */
+@media (max-width: 428px) {
+  .gate-form-panel {
+    padding: 32px 16px;
+  }
+
+  .gate-card {
+    padding: 32px 24px;
+  }
+
+  .gate-logo {
+    height: 32px;
+    margin-bottom: 24px;
+  }
+
+  .gate-title {
+    font-size: 19px;
+  }
+}

@@ -1,0 +1,298 @@
+/* Screen 2 — Journey Hub. Header + content grid + footer layout (not a
+   split-screen like Gate — the two screens have different jobs and are
+   allowed to look structurally different). Desktop-first (primary:
+   1440px / 1920px), with tablet (~768-1024px) and mobile (~375-428px)
+   adjustments below. Uses only the shared brand + surface tokens from
+   src/index.css — no colors invented here. */
+
+.hub-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--bg);
+}
+
+/* ---------- Header ---------- */
+
+.hub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 16px 40px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.hub-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.hub-logo {
+  display: block;
+  height: 28px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.hub-header-label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.hub-header-session {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+
+.hub-user {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 260px;
+}
+
+.hub-user-id {
+  color: var(--text-h);
+  font-weight: 600;
+}
+
+.hub-logout {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--brand-navy);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.hub-logout:hover {
+  background: var(--bg);
+  border-color: var(--brand-navy);
+}
+
+.hub-logout:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Main content ---------- */
+
+/* Top-anchored, not centered: heading first, then journey cards flow
+   left-to-right starting top-left, wrapping to a new row as more are
+   added — standard content-first layout that scales to any journey
+   count without needing to change again as more journeys are added. */
+.hub-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.hub-heading {
+  font-size: 22px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.hub-subtext {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin: 4px 0 28px;
+}
+
+/* Fixed-width tracks (not `1fr`) so a card never stretches wider than it
+   should just because a row isn't full yet — cards stay a consistent
+   size whether there's 1 journey or 20, filling left-to-right, top-to-
+   bottom, wrapping naturally as more are added. */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  gap: 20px;
+}
+
+.hub-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.hub-card:hover {
+  border-color: var(--brand-navy);
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-1px);
+}
+
+.hub-card:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.hub-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand-navy) 8%, var(--surface));
+  color: var(--brand-navy);
+}
+
+.hub-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.hub-card-title {
+  font-size: 16px;
+}
+
+.hub-card-description {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+/* ---------- Empty state ---------- */
+
+.hub-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  max-width: 380px;
+  margin: 56px auto 0;
+  padding: 48px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.hub-empty-icon {
+  width: 56px;
+  height: 42px;
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.hub-empty-title {
+  font-size: 16px;
+  color: var(--text-h);
+}
+
+.hub-empty-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+/* ---------- Footer ---------- */
+
+.hub-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 40px;
+  font-size: 12.5px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+
+.hub-footer-version {
+  padding-left: 10px;
+  border-left: 1px solid var(--border);
+}
+
+/* Tablet — grid naturally collapses to fewer columns via auto-fill; header
+   stays a single row but padding tightens. */
+@media (max-width: 1024px) {
+  .hub-header {
+    padding: 16px 24px;
+  }
+
+  .hub-main {
+    padding: 32px 24px;
+  }
+
+  .hub-footer {
+    padding: 14px 24px;
+  }
+}
+
+/* Mobile — header stacks (brand row, then session row), grid becomes a
+   single column, footer wraps onto its own compact line. No horizontal
+   overflow at any point in this range. */
+@media (max-width: 640px) {
+  .hub-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px 20px;
+  }
+
+  .hub-header-session {
+    justify-content: space-between;
+  }
+
+  .hub-user {
+    max-width: none;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .hub-main {
+    padding: 28px 20px;
+  }
+
+  .hub-heading {
+    font-size: 19px;
+    margin-bottom: 20px;
+  }
+
+  .hub-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hub-empty {
+    margin-top: 32px;
+    padding: 36px 24px;
+  }
+
+  .hub-footer {
+    padding: 12px 20px;
+    text-align: center;
+  }
+}

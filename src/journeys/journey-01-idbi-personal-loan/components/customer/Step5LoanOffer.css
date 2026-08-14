@@ -1,0 +1,242 @@
+/* Step 5 — Loan Offer. Layout chrome (ribbon title, long-form card,
+   section ribbons) comes from JourneyLayout/SectionCard — this file only
+   styles content specific to this screen: the greeting block, the
+   interactive amount/tenure sliders, and the Key Fact Statement. */
+
+.step5-greeting-block {
+  padding: 20px 22px 4px;
+}
+
+.step5-greeting {
+  font-size: 14px;
+  color: var(--text);
+  margin: 0 0 8px;
+}
+
+.step5-greeting strong {
+  color: var(--text-h);
+}
+
+.step5-meta-row {
+  display: flex;
+  gap: 40px;
+}
+
+.step5-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.step5-meta-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.step5-meta-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+/* ---------- Sliders ---------- */
+
+.step5-slider-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.step5-slider-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.step5-slider-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-h);
+}
+
+.step5-slider-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+.step5-slider {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: var(--border);
+  border-radius: 999px;
+  outline: none;
+  accent-color: var(--brand-navy);
+  cursor: pointer;
+}
+
+.step5-slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--brand-navy);
+  cursor: pointer;
+}
+
+.step5-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--brand-navy);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--brand-navy);
+  cursor: pointer;
+}
+
+.step5-slider-bounds {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* ---------- Summary tiles ---------- */
+
+.step5-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 6px;
+}
+
+@media (max-width: 640px) {
+  .step5-summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.step5-summary-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px 18px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+}
+
+.step5-summary-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.step5-summary-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand-navy);
+}
+
+.step5-disclaimer {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin: 10px 0 0;
+}
+
+/* ---------- Key Fact Statement ---------- */
+
+.step5-kfs-apr {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.step5-kfs-apr-label {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.step5-kfs-apr-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.step5-kfs-line {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.step5-kfs-line a {
+  color: var(--brand-navy);
+  font-weight: 600;
+}
+
+/* ---------- Actions ---------- */
+
+.step5-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  padding: 16px 22px;
+  border-top: 1px solid var(--border);
+}
+
+.step5-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+/* Destructive-styled Reject button — a journey-local override of the
+   shared secondary Button variant, not a new shared variant. */
+.step5-actions .core-btn--secondary {
+  color: var(--error-text);
+  border-color: var(--error);
+}
+
+.step5-actions .core-btn--secondary:hover:not(:disabled) {
+  background: var(--error-bg);
+}
+
+/* ---------- Rejected terminal state ---------- */
+
+.step5-rejected {
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.step5-rejected-heading {
+  font-size: 20px;
+  margin: 0;
+  color: var(--text-h);
+}
+
+.step5-rejected-text {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .step5-meta-row {
+    gap: 24px;
+  }
+  .step5-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .step5-actions .core-btn {
+    width: 100%;
+  }
+}

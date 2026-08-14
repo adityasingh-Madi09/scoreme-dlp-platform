@@ -1,0 +1,164 @@
+/* Step 7 — Success. Sits directly inside JourneyLayout's `.jl-long-form-card`
+   (no own card shell, unlike the old Screen14Success), centered. The badge/
+   confetti visual is plain inline SVG + CSS — no image asset. */
+
+.step7-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 40px 48px;
+}
+
+/* ---------- Badge + confetti ---------- */
+
+.step7-badge-wrap {
+  width: 100%;
+  max-width: 240px;
+}
+
+.step7-badge-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.step7-badge-ring {
+  fill: none;
+  stroke: rgba(11, 30, 69, 0.12);
+  stroke-width: 3;
+}
+
+.step7-badge-fill {
+  fill: var(--success);
+}
+
+.step7-badge-check {
+  stroke: #ffffff;
+  stroke-width: 6;
+}
+
+.step7-confetti {
+  animation: step7-confetti-pop 1.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.step7-confetti-1 {
+  fill: var(--brand-orange);
+  animation-delay: 0s;
+}
+.step7-confetti-2 {
+  fill: var(--brand-sky);
+  animation-delay: 0.2s;
+}
+.step7-confetti-3 {
+  fill: var(--brand-navy);
+  animation-delay: 0.4s;
+}
+.step7-confetti-4 {
+  fill: var(--brand-sky);
+  animation-delay: 0.1s;
+}
+.step7-confetti-5 {
+  fill: var(--brand-orange);
+  animation-delay: 0.3s;
+}
+.step7-confetti-6 {
+  fill: var(--brand-navy);
+  animation-delay: 0.5s;
+}
+.step7-confetti-7 {
+  fill: var(--brand-sky);
+  animation-delay: 0.25s;
+}
+.step7-confetti-8 {
+  fill: var(--brand-orange);
+  animation-delay: 0.45s;
+}
+
+@keyframes step7-confetti-pop {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15) translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .step7-confetti {
+    animation: none;
+  }
+}
+
+/* ---------- Copy ---------- */
+
+.step7-heading {
+  font-size: 22px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+  color: var(--text-h);
+  margin: 12px 0 0;
+}
+
+.step7-body {
+  font-size: 13.5px;
+  line-height: 160%;
+  color: var(--text-muted);
+  margin: 10px 0 4px;
+  max-width: 420px;
+}
+
+/* ---------- Application ID ---------- */
+
+.step7-application-id {
+  margin-top: 18px;
+  padding: 14px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.step7-application-id-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.step7-application-id-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Actions ---------- */
+
+.step7-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.step7-actions .core-btn {
+  width: auto;
+  padding: 0 28px;
+}
+
+@media (max-width: 640px) {
+  .step7-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  .step7-actions .core-btn {
+    width: 100%;
+  }
+}

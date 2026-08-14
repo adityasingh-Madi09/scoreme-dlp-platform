@@ -1,0 +1,322 @@
+/* ============================================================
+   JourneyLayout.css — v2 (top minimal-progress nav + ribbon title)
+   Drop at: src/core/components/JourneyLayout.css
+   Requires theme.css to be imported globally first.
+   ============================================================ */
+
+.jl-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ---------- Header ---------- */
+.jl-header {
+  height: var(--header-height);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--space-6);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 10;
+}
+
+.jl-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.jl-logo {
+  height: 26px;
+  width: auto;
+}
+
+.jl-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border);
+}
+
+.jl-journey-name {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-navy-900);
+}
+
+.jl-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.jl-exit-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.jl-exit-btn:hover {
+  border-color: var(--color-error);
+  color: var(--color-error);
+}
+
+/* ---------- Always-visible compact stepper ----------
+   Replaces the v2 hover-only progress bar + popover. Every step's circle
+   is visible at once, connected by a thin line that fills navy as the
+   customer progresses — the connector line IS the progress indicator, so
+   there's no separate progress track to keep in sync. Kept intentionally
+   compact (small circles, short labels) rather than the heavier boxed
+   stepper style bank portals typically use. */
+.jl-stepper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: var(--space-4) var(--space-6) var(--space-3);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.jl-stepper-node {
+  flex: 1 1 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Connector: drawn from each node (except the first) reaching back to the
+   previous node's circle center, so it visually sits *between* the two
+   circles rather than under either one. */
+.jl-stepper-node:not(:first-child)::before {
+  content: '';
+  position: absolute;
+  top: 11px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--color-border);
+  z-index: 0;
+}
+
+.jl-stepper-node--done:not(:first-child)::before,
+.jl-stepper-node--current:not(:first-child)::before {
+  background: var(--color-navy-700);
+}
+
+.jl-stepper-circle {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  border: 1.5px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-secondary);
+  transition: all 0.2s ease;
+}
+
+.jl-stepper-node--done .jl-stepper-circle {
+  background: var(--color-navy-700);
+  border-color: var(--color-navy-700);
+  color: #fff;
+}
+
+.jl-stepper-node--current .jl-stepper-circle {
+  border-color: var(--color-navy-900);
+  color: var(--color-navy-900);
+  box-shadow: 0 0 0 3px rgba(11, 30, 61, 0.1);
+}
+
+.jl-stepper-label {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: center;
+  color: var(--color-text-secondary);
+  max-width: 92px;
+}
+
+.jl-stepper-node--current .jl-stepper-label {
+  color: var(--color-navy-900);
+  font-weight: 700;
+}
+
+/* ---------- Body (main content) ---------- */
+.jl-body {
+  flex: 1;
+  display: flex;
+  min-height: 0; /* critical: allows main to scroll independently */
+}
+
+/* `display: flex` + `.jl-content-row`'s `margin: auto` below is a
+   deliberate pairing: on short screens (e.g. Get Started, Success) the
+   content row centers vertically in the available space instead of
+   leaving a dead grey band underneath it; on tall screens (long-form
+   multi-section screens) the row is bigger than `.jl-main`, so the auto
+   margins resolve to 0 and it scrolls from the top exactly as before —
+   no special-casing needed per screen. */
+.jl-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6);
+}
+
+/* Row that holds the main content column plus the optional summary rail.
+   Wider than the old single-760px column since removing the left rail
+   freed up real width — this is deliberate, not a bug: the whole point of
+   dropping the sidebar was to give the form more room. */
+.jl-content-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-6);
+  max-width: 1180px;
+  width: 100%;
+  margin: auto;
+}
+
+.jl-content-row--full {
+  max-width: 1100px;
+}
+
+.jl-main-inner {
+  flex: 1 1 auto;
+  min-width: 0;
+  max-width: 1000px;
+}
+
+.jl-summary-rail {
+  flex: 0 0 270px;
+  position: sticky;
+  top: 0;
+}
+
+@media (max-width: 1200px) {
+  .jl-summary-rail {
+    display: none;
+  }
+}
+
+/* ---------- Ribbon page title ----------
+   Navy gradient banner sitting directly above the long-form card, reading
+   as one composed unit (no gap, ribbon's bottom corners are square, card's
+   top corners are square) rather than a separate floating heading. */
+.jl-ribbon-title {
+  background: linear-gradient(120deg, var(--color-navy-900), var(--color-navy-700));
+  color: #fff;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.jl-ribbon-eyebrow {
+  margin: 0 0 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.jl-ribbon-title h1 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.1px;
+  color: #fff;
+}
+
+.jl-ribbon-subtitle {
+  margin: 0;
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+/* ---------- Long-form card ----------
+   The single continuous white card every screen's content lives in.
+   Individual `SectionCard`s compose inside it as ribbon-divided sections
+   (see SectionCard.tsx/css) rather than each being its own separately
+   bordered/shadowed box — this is what makes multi-section screens read
+   as "one long form" instead of a grid of disconnected boxes. */
+.jl-long-form-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+/* ---------- Sticky footer ---------- */
+.jl-footer {
+  height: var(--footer-height);
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  z-index: 10;
+}
+
+.jl-footer-inner {
+  height: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.jl-footer-inner--narrow {
+  max-width: 1100px;
+}
+
+/* Overrides the shared Button's default full-width sizing for these two
+   footer actions specifically — same override convention used across the
+   journey screens (e.g. Screen07's chip row). */
+.jl-footer-btn.core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+  .jl-header {
+    padding: 0 var(--space-4);
+  }
+  .jl-journey-name {
+    display: none;
+  }
+  .jl-stepper {
+    padding: var(--space-3) var(--space-4) var(--space-2);
+  }
+  .jl-stepper-label {
+    display: none;
+  }
+  .jl-main {
+    padding: var(--space-4);
+  }
+  .jl-ribbon-title {
+    padding: var(--space-3) var(--space-4);
+  }
+}

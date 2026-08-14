@@ -1,0 +1,264 @@
+/* Customer Flow — Screen 5 (Basic Information). Wider card than Screens
+   1-4 since this screen carries a read-only info panel plus a multi-field
+   form; still the same card shell convention (surface/border/radius) from
+   src/index.css tokens. The "auto-fetched" panel below reuses the same
+   muted-inset-card language as `.screen-mobile-entry-helper`-style text
+   but as its own distinct block, since nothing existing already covers a
+   multi-column read-only summary grid. */
+
+.screen-basic-info {
+  width: 100%;
+  max-width: 760px;
+}
+
+.screen-basic-info-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-basic-info-fetched-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+
+.screen-basic-info-fetched-note {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+/* ---------- Read-only "auto-fetched" panel ---------- */
+
+.screen-basic-info-panel {
+  margin: 0 0 32px;
+  padding: 20px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px 24px;
+}
+
+.screen-basic-info-panel-item dt {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin: 0 0 4px;
+}
+
+.screen-basic-info-panel-item dd {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-h);
+  margin: 0;
+  word-break: break-word;
+}
+
+/* ---------- Editable form ---------- */
+
+.screen-basic-info-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Editable fields use a 2-column grid (not 3, unlike the shorter read-only
+   panel above) — several labels here ("Name as you would prefer on the
+   card", "Educational Qualification") are long enough that a 3rd column
+   left them visually cramped for no real density benefit. */
+.screen-basic-info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 32px;
+  align-items: start;
+}
+
+/* Spans the full 2-column row — the Verify button/badge next to the input
+   needs the extra width, and it reads better as a standalone full-width
+   row than squeezed into a half-width cell. */
+.screen-basic-info-email-field {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* Compound selector (not just `.screen-basic-info-verify-btn`) so this
+   reliably overrides the shared Button's default full-width sizing
+   regardless of CSS bundle ordering — same convention as
+   `.journey-header .journey-header-exit`. Targets the shared TextField's
+   `.core-input-action` slot (see src/core/components) that now hosts this
+   button/badge. */
+.screen-basic-info-email-field .core-input-action .screen-basic-info-verify-btn {
+  width: auto;
+  flex-shrink: 0;
+  padding: 0 18px;
+}
+
+.screen-basic-info-verified-badge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--success-text);
+  background: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: 999px;
+}
+
+.screen-basic-info-change-email {
+  align-self: flex-start;
+  margin-top: 2px;
+  font-size: 12.5px;
+  font-family: var(--sans);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.screen-basic-info-change-email:hover {
+  color: var(--text-h);
+  text-decoration: underline;
+}
+
+.screen-basic-info-change-email:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Inline email OTP panel ---------- */
+
+.screen-basic-info-otp-panel {
+  padding: 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.screen-basic-info-otp-confirmation {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.screen-basic-info-otp-error {
+  width: 100%;
+  max-width: 420px;
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  text-align: left;
+}
+
+.screen-basic-info-otp-resent-note {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.screen-basic-info-otp-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.screen-basic-info-otp-resend {
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--sans);
+  color: var(--brand-navy);
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.screen-basic-info-otp-resend:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.screen-basic-info-otp-resend:disabled {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.screen-basic-info-otp-resend:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- Actions ---------- */
+
+.screen-basic-info-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.screen-basic-info-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 900px) {
+  .screen-basic-info-panel,
+  .screen-basic-info-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .screen-basic-info-card {
+    padding: 32px 24px;
+  }
+
+  .screen-basic-info-panel,
+  .screen-basic-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .screen-basic-info-email-field .core-input-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .screen-basic-info-email-field .screen-basic-info-verify-btn {
+    width: 100%;
+  }
+
+  .screen-basic-info-actions {
+    justify-content: stretch;
+  }
+
+  .screen-basic-info-actions .core-btn {
+    width: 100%;
+  }
+}

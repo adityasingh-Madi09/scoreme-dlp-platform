@@ -1,0 +1,110 @@
+/* Customer Flow — Screen 12 (Terms & Conditions). Reference:
+   design_assets/journey-idbi-personal-loan/customer/IDBI_PLJ_S_9.png for
+   content/structure only — restyled entirely in this platform's own design
+   language (card-shell conventions already established by
+   Screen10LoanOffer.css/Screen11Liveliness.css), using only the shared
+   tokens from src/index.css, not IDBI's reference styling. */
+
+.screen-terms {
+  width: 100%;
+  max-width: 620px;
+}
+
+.screen-terms-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-terms-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+/* ---------- Scrollable agreement panel ---------- */
+
+.screen-terms-panel {
+  margin-top: 16px;
+  height: 260px;
+  overflow-y: auto;
+  padding: 20px 22px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 165%;
+  color: var(--text);
+}
+
+.screen-terms-panel:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.screen-terms-panel p {
+  margin: 0 0 12px;
+}
+
+.screen-terms-panel p:last-child {
+  margin-bottom: 0;
+}
+
+.screen-terms-doc-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+.screen-terms-doc-section-title {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--brand-navy);
+  margin-top: 16px !important;
+}
+
+.screen-terms-panel p.screen-terms-doc-section-title:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* ---------- Checkbox + actions ---------- */
+
+.screen-terms-checkbox {
+  margin-top: 20px;
+}
+
+.screen-terms-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.screen-terms-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .screen-terms-card {
+    padding: 32px 24px;
+  }
+
+  .screen-terms-panel {
+    height: 220px;
+  }
+
+  .screen-terms-actions {
+    justify-content: stretch;
+  }
+
+  .screen-terms-actions .core-btn {
+    width: 100%;
+  }
+}

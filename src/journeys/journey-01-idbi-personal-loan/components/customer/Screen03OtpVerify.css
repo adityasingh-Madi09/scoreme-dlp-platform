@@ -1,0 +1,111 @@
+/* Customer Flow — Screen 3 (OTP Verify). Centered card, consistent with
+   Screen 2's. Its own error-banner styling mirrors (but does not reuse)
+   core/components' `.core-field-error`, since that class is an internal
+   implementation detail of `TextField`, not a shared utility class. Uses
+   only the shared tokens from src/index.css. */
+
+.screen-otp-verify {
+  width: 100%;
+  max-width: 480px;
+}
+
+.screen-otp-verify-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+}
+
+.screen-otp-verify-confirmation {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  margin-bottom: 20px;
+}
+
+.screen-otp-verify-error {
+  width: 100%;
+  margin: 16px 0 0;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  color: var(--error-text);
+  background: var(--error-bg);
+  border: 1px solid var(--error);
+  border-radius: 6px;
+  text-align: left;
+}
+
+.screen-otp-verify-resent-note {
+  margin: 16px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.screen-otp-verify-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.screen-otp-verify-resend {
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--sans);
+  color: var(--brand-navy);
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.screen-otp-verify-resend:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+.screen-otp-verify-resend:disabled {
+  color: var(--text-muted);
+  cursor: default;
+}
+
+.screen-otp-verify-resend:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.screen-otp-verify-back {
+  margin-top: 20px;
+  font-size: 13px;
+  font-family: var(--sans);
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.screen-otp-verify-back:hover {
+  color: var(--text-h);
+  text-decoration: underline;
+}
+
+.screen-otp-verify-back:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .screen-otp-verify-card {
+    padding: 32px 24px;
+  }
+}

@@ -1,0 +1,174 @@
+/* RoleSelectScreen — journey entry point (journey-local). Header + content
+   layout, deliberately similar in spirit to core/hub/HubView.css's grid
+   (same tokens, same card conventions) since both are "pick a thing from a
+   few cards" screens — but this file is fully independent of Hub's CSS.
+   Desktop-first (primary: 1440px / 1920px), with tablet/mobile steps
+   below. Uses only the shared tokens from src/index.css. */
+
+.role-select-screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--bg);
+}
+
+.role-select-main {
+  flex: 1;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 56px 40px;
+}
+
+/* One consolidated white panel holding the intro copy + role cards,
+   instead of both floating directly on the grey page background — reads
+   as a single composed unit rather than loose elements scattered on
+   grey, matching the Customer Flow's long-form-card treatment. */
+.role-select-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md, 10px);
+  box-shadow: var(--shadow-card);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.role-select-intro {
+  max-width: 640px;
+}
+
+.role-select-heading {
+  font-size: 24px;
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.role-select-subtext {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 10px;
+}
+
+.role-select-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Tinted background (not white-on-white) so each role tile reads as its
+   own card against the panel surrounding it. */
+.role-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  padding: 28px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.role-card:hover {
+  border-color: var(--brand-navy);
+  box-shadow: 0 4px 14px rgba(11, 30, 69, 0.08);
+  transform: translateY(-1px);
+}
+
+.role-card:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.role-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--brand-navy) 8%, var(--surface));
+  color: var(--brand-navy);
+}
+
+.role-card-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Banker/Admin: real cards (focusable, clickable, only show an inert
+   "coming soon" notice), muted just enough to read as not-yet-available. */
+.role-card--inert .role-card-icon {
+  color: var(--text-muted);
+  background: var(--bg);
+}
+
+.role-card--inert:hover {
+  border-color: var(--border);
+  box-shadow: none;
+  transform: none;
+}
+
+.role-card-title {
+  font-size: 17px;
+}
+
+.role-card-description {
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.role-card-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+@media (max-width: 1024px) {
+  .role-select-main {
+    padding: 40px 28px;
+  }
+
+  .role-select-panel {
+    padding: 32px;
+  }
+
+  .role-select-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .role-select-main {
+    padding: 32px 20px;
+  }
+
+  .role-select-panel {
+    padding: 24px;
+  }
+
+  .role-select-heading {
+    font-size: 20px;
+  }
+
+  .role-select-grid {
+    grid-template-columns: 1fr;
+  }
+}

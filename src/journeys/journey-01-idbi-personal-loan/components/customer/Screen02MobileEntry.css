@@ -1,0 +1,54 @@
+/* Customer Flow — Screen 2 (Mobile Entry). Centered form card, mirroring
+   the platform's established Gate/AuthModal card conventions. Uses only
+   the shared tokens from src/index.css. */
+
+.screen-mobile-entry {
+  width: 100%;
+  max-width: 480px;
+}
+
+.screen-mobile-entry-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.screen-mobile-entry-subtext {
+  font-size: 15px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  margin-bottom: 32px;
+}
+
+.screen-mobile-entry-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.screen-mobile-entry-helper {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.screen-mobile-entry-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .screen-mobile-entry-card {
+    padding: 32px 24px;
+  }
+}

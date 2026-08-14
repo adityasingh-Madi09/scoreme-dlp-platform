@@ -1,0 +1,182 @@
+/* Customer Flow — Screen 11 (Liveliness Check). No Figma reference exists;
+   layout follows the same card-shell conventions already established by
+   the other Customer Flow screens (Screen09Nominee.css/Screen10LoanOffer.css),
+   using only the shared tokens from src/index.css. */
+
+.screen-liveliness {
+  width: 100%;
+  max-width: 560px;
+}
+
+.screen-liveliness-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-card);
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+.screen-liveliness-subtext {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+/* ---------- Consent step ---------- */
+
+.screen-liveliness-consent {
+  margin-top: 20px;
+  padding: 20px 24px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.screen-liveliness-consent-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 150%;
+  color: var(--text);
+}
+
+.screen-liveliness-consent .core-btn {
+  width: auto;
+  align-self: flex-start;
+  padding: 0 28px;
+}
+
+/* ---------- Camera preview ---------- */
+
+.screen-liveliness-preview-wrap {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.screen-liveliness-preview {
+  position: relative;
+  width: 320px;
+  height: 240px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--brand-navy);
+  border: 1px solid var(--border);
+}
+
+.screen-liveliness-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Mirror the preview, matching how users expect to see themselves. */
+  transform: scaleX(-1);
+}
+
+.screen-liveliness-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  background: var(--brand-navy);
+}
+
+.screen-liveliness-fallback-icon {
+  font-size: 32px;
+  opacity: 0.85;
+}
+
+.screen-liveliness-complete-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 30, 69, 0.55);
+}
+
+.screen-liveliness-complete-check {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--success);
+  border-radius: 50%;
+}
+
+.screen-liveliness-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-h);
+  min-height: 20px;
+}
+
+.screen-liveliness-spinner {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border: 3px solid var(--border);
+  border-top-color: var(--brand-navy);
+  border-radius: 50%;
+  animation: screen-liveliness-spin 0.8s linear infinite;
+}
+
+@keyframes screen-liveliness-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Actions ---------- */
+
+.screen-liveliness-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28px;
+}
+
+.screen-liveliness-actions .core-btn {
+  width: auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 640px) {
+  .screen-liveliness-card {
+    padding: 32px 24px;
+  }
+
+  .screen-liveliness-preview {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .screen-liveliness-actions {
+    justify-content: stretch;
+  }
+
+  .screen-liveliness-actions .core-btn {
+    width: 100%;
+  }
+}

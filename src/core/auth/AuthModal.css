@@ -1,0 +1,107 @@
+/* Screen 3 — Auth Pop-Up Modal (core, generic, shared). Dimmed backdrop
+   overlaying whatever screen opened it, with a centered credential card.
+   Uses only the shared brand + surface tokens from src/index.css — no
+   colors invented here. This component has no journey-specific styling;
+   any journey opens the exact same visual chrome. */
+
+.auth-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(11, 30, 69, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.auth-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  padding: 44px 36px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.auth-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.auth-modal-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.auth-modal-close:hover {
+  background: var(--bg);
+  color: var(--text-h);
+}
+
+.auth-modal-close:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.auth-modal-title {
+  font-size: var(--font-size-lg);
+  line-height: 130%;
+  letter-spacing: -0.2px;
+}
+
+.auth-modal-subtitle {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+
+.auth-modal-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* .auth-modal-field / .auth-modal-label / .auth-modal-input /
+   .auth-modal-error / .auth-modal-submit were identical to the shared
+   .core-field / .core-label / .core-input / .core-form-error / .core-btn
+   rules now in src/core/components/components.css (via TextField and
+   Button) — moved there to avoid duplication. The submit button also
+   needed no color override here: this modal's brand-navy fill is already
+   the shared Button primitive's default "primary" variant. */
+
+.auth-modal-submit {
+  margin-top: 4px;
+}
+
+@media (max-width: 428px) {
+  .auth-modal-card {
+    padding: 36px 24px 28px;
+  }
+
+  .auth-modal-title {
+    font-size: 17px;
+  }
+}
