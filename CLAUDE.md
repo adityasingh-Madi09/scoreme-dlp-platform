@@ -171,17 +171,21 @@ For this prototype, actively research the web for modern, professional visual re
 
 **Hard rule: never use an image, icon, or vector pulled from a generic image search, a specific bank's real marketing materials, or any source without a clear open/commercial-use license.** This explicitly includes **screenshots of a real, named institution's live/production product** (its actual logo, exact brand colors, real UI chrome, or real customer/document data visible in the screenshot) — these are useful for structure and field-content reference ONLY, exactly like a `design_assets/` Figma export, and must never influence this platform's own color choices, logo, or visual identity. This is presentation material that may be shown externally — copyright and brand-lookalike issues are a real risk, not a formality. When unsure whether an asset is safe to use, don't use it — recreate the idea instead (e.g. build a simple icon/illustration with code rather than sourcing an ambiguous image).
 
+**Approved, scoped exception — Banker workspaces built for the bank itself.** For a journey's Banker (or other bank-staff-facing) role screens specifically, the client's own real logo (recreated in code, not sourced as an image file) and real brand colors MAY be used instead of ScoreMe's neutral navy theme — approved by Aditya Singh (ScoreMe) for `journey-01-idbi-personal-loan`'s Banker workspace on 2026-08-14. Rationale: that journey is bespoke software built specifically for IDBI Bank, so its own Banker staff seeing their own institution's identity in their own internal tool is the point, not a third party's brand borrowed for an unrelated product. This exception does **not** extend to Customer-facing screens of any journey (those stay on the neutral ScoreMe theme per the standing rule above) and does not apply automatically to future journeys — get the same explicit, per-journey approval before repeating this pattern elsewhere, and scope any new theme tokens to that role's own CSS class (see `src/journeys/journey-01-idbi-personal-loan/components/banker/BankerTheme.css` for the pattern: tokens scoped to `.banker-shell`, never touching `src/index.css` or `src/core/theme.css`).
+
 ## Current Journeys Registered
 (Update this list as journeys are added — this must be kept accurate; a
 stale entry here is a real bug, not a formality, since it's the only place
 anyone can see platform status at a glance)
-- `journey-01-idbi-personal-loan` — IDBI Bank Personal Loan. **Rebuild in
-  progress** — the first build (14 Customer Flow screens, Entry → Success)
-  was scrapped after client-pitch feedback (see `LESSONS.md` in the project
-  root) and is being rebuilt from a written plan
-  (`docs/journey-01-idbi-personal-loan-plan.md`) using `SectionCard`,
-  `sidePanel`, and the "Page Title Ownership" rule from the start. Update
-  this entry to reflect actual rebuild progress as screens land.
+- `journey-01-idbi-personal-loan` — IDBI Bank Personal Loan.
+  **Customer Flow**: rebuilt on the v3 ribbon/stepper system (7 consolidated
+  screens, Get Started → Success) after the original 14-screen build was
+  scrapped on client-pitch feedback (see `LESSONS.md`). **Banker workspace**:
+  built (Dashboard, All Application, Application Detail), fully isolated
+  under `components/banker/`, using IDBI's own brand colors under the
+  approved exception documented above. Both are tracked in
+  `docs/journey-01-idbi-personal-loan-plan.md`. Update this entry to
+  reflect progress as either role's screens change.
 
 ## Effort Balance — Read This If You Are `frontend-builder`
 

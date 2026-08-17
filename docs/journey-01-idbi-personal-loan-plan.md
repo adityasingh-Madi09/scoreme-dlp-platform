@@ -177,3 +177,95 @@ after the old dead screens were removed, which also confirms every
 exactly (a typo or missing field would have been a compile error, not
 just a runtime bug). Manual click-through in a real browser still
 requires `npm run dev` on the actual device.
+
+## Banker Workspace — plan (new role, built independently of Customer Flow)
+
+Reference: 6 Figma screenshots of IDBI's own internal Banker portal
+(dashboard, all-applications list, a single application's detail view,
+its documents tab), supplied directly by the user, plus two direction
+questions asked and answered before building:
+
+1. **IDBI Bank branding — recreate it, don't source it.** The Banker
+   workspace uses IDBI's own brand colors (green `#12805A` / orange
+   `#F0672A`) and a hand-built inline-SVG lockup approximating the
+   reference logo, instead of the Customer Flow's neutral ScoreMe navy.
+   This is a deliberate, scoped exception to this file's general
+   "never reproduce a real institution's exact brand from a screenshot"
+   caution (see CLAUDE.md's Design Research & Assets section) — justified
+   here because this journey is bespoke software built specifically for
+   IDBI Bank, so showing their own identity back to them in their own
+   staff tool is the point, not a third party's brand borrowed for an
+   unrelated product. Flagged explicitly to the user rather than assumed.
+2. **"Application by Location" — a ranked regional list, not a real
+   India map.** The reference dashboard has a full India choropleth with
+   per-state shading; built instead as a simple ranked bar-list by region
+   (same "where are applications coming from" story), avoiding both the
+   effort and the geographic-accuracy risk of a hand-built state-boundary
+   SVG in a client-facing prototype.
+
+### Folder isolation from the Customer Flow
+
+Everything lives under a new `components/banker/` folder, sibling to
+`components/customer/` — its own root container, screens, mock data file,
+and local IDBI theme tokens (scoped to a `.banker-shell` class via
+`BankerTheme.css`, never touching `src/index.css` or `src/core/theme.css`).
+No file under `components/banker/` imports from `components/customer/` or
+vice versa; the only files touched outside `components/banker/` were
+`RoleSelectScreen.tsx` (Banker card wired from inert to active) and
+`IdbiPersonalLoanView.tsx` (added the `'banker-flow'` screen case). The
+shared `Button` primitive is reused as-is — retthemed to IDBI green purely
+via the `--btn-primary-bg`/`--btn-primary-bg-hover` CSS variable override
+`components.css` already exposes for exactly this purpose, no fork needed.
+
+### Screens
+
+1. **Dashboard** (`BankerDashboard`) — 4 stat tiles (Total Application,
+   Sanctioned Application, Disbursed, Total Disbursed Loan Amount), each
+   with a signed delta vs previous year (green = favorable, red =
+   unfavorable — "Disbursed" trending down is unfavorable even though its
+   arrow points down, matching the reference's own color logic). Below:
+   an "Application Status" bar chart (Approved / Pending / In Progress /
+   Rejected) and the ranked regional breakdown described above. The bar
+   chart's 4-color palette (`#1baf7a` teal / `#eda100` amber / `#2a78d6`
+   blue / `#e34948` red, in that exact order) was run through the
+   `dataviz` skill's `validate_palette.js` script — passes every adjacent
+   CVD/normal-vision check; the one contrast-vs-surface WARN is mitigated
+   with direct value labels on every bar plus a legend, per that skill's
+   relief rule.
+2. **All Application** (`BankerApplicationsList`) — search-by-ID and the
+   status filter both actually filter the mock list client-side; "Filter"
+   (a fuller panel, out of scope) shows the same inline "coming soon"
+   notice convention already used elsewhere in this journey. Table adds a
+   Status column (pill-styled) the reference's list view doesn't show, for
+   legibility.
+3. **Application Detail** (`BankerApplicationDetail`) — breadcrumb, a
+   summary card (ID, name, date/amount/tenure), left nav switching between
+   "Application Overview" (4 accordion sections: Personal, Address,
+   Employment, Loan Details) and "Documents" (a small table with a
+   "Download"/"Download All" action, both mocked via the same inline-notice
+   convention). Only ID, name and requested amount come from the row that
+   was clicked; the rest of the detail fields are a fixed mock template
+   (see `mockBankerData.constants.ts`) — a deliberate prototype shortcut
+   rather than authoring a unique detail record per mock application.
+
+### Visual-polish pass (added after a mid-build "plan first, check for
+missing visuals" prompt from the user)
+
+- Stat tiles gained a small `lucide-react` icon each (documents / check-
+  circle / banknote / wallet) so the dashboard doesn't read as bare
+  numbers-in-boxes.
+- The Application Detail summary card now also shows the application's
+  status pill next to the applicant's name (same pill styling as the
+  list table), which the reference screenshot omits but which is useful
+  context a banker would want without switching screens.
+- The Application Detail sidebar's two nav items ("Application Overview" /
+  "Documents") gained matching `lucide-react` icons.
+
+### Verification
+
+Same approach as the Customer Flow rebuild: `npx tsc --noEmit` against the
+full `src/` tree via a temporary local tsconfig (deleted immediately
+after each check, never delivered) — zero type errors, which also confirms
+every mock-data field referenced across the new Banker screens matches its
+constants file exactly. Manual click-through in a real browser still
+requires `npm run dev` on the actual device.

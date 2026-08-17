@@ -1,0 +1,117 @@
+/* BankerHeader — top bar (banker-local). Uses only the `.banker-shell`
+   IDBI tokens defined in BankerTheme.css — never the platform's navy
+   tokens, and never shared with components/customer/'s JourneyHeader.css. */
+
+.banker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 14px 40px;
+  background: var(--idbi-surface);
+  border-bottom: 1px solid var(--idbi-border);
+}
+
+.banker-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.banker-header-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--idbi-border);
+  flex-shrink: 0;
+}
+
+.banker-header-powered-by {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.banker-header-powered-by-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--idbi-text-muted);
+  white-space: nowrap;
+}
+
+.banker-header-scoreme-logo {
+  display: block;
+  height: 18px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.banker-logout {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 16px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #2a6fd1;
+  background: #eaf2fd;
+  border: 1px solid #c9dffb;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.banker-logout:hover {
+  background: #dcebfc;
+}
+
+.banker-logout:focus-visible {
+  outline: 3px solid var(--idbi-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ---------- IdbiBankLogo ---------- */
+
+.idbi-bank-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.idbi-bank-logo-mark {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+}
+
+.idbi-bank-logo-text {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.idbi-bank-logo-idbi {
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #14213d;
+}
+
+.idbi-bank-logo-bank {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: var(--idbi-green);
+}
+
+@media (max-width: 640px) {
+  .banker-header {
+    padding: 12px 20px;
+  }
+
+  .banker-header-powered-by-label {
+    display: none;
+  }
+}

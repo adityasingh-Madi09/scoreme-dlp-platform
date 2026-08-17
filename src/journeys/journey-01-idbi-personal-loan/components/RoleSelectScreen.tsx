@@ -4,13 +4,15 @@ import InlineNotice from './InlineNotice';
 import './RoleSelectScreen.css';
 
 interface RoleSelectScreenProps {
-  /** Advances into the Customer Flow (the only wired-up role so far). */
+  /** Advances into the Customer Flow. */
   onSelectCustomer: () => void;
+  /** Advances into the Banker workspace. */
+  onSelectBanker: () => void;
   /** Hands control back to the Hub. */
   onExit: () => void;
 }
 
-type InertRole = 'banker' | 'admin';
+type InertRole = 'admin';
 
 function PersonIcon() {
   return (
@@ -42,15 +44,17 @@ function ShieldIcon() {
 
 /**
  * Journey entry point — shown immediately when `IdbiPersonalLoanView`
- * mounts, before the Customer Flow. Three role cards; only "Customer" is
- * wired up. "Banker" and "Admin" stay fully focusable/keyboard-reachable
- * (real accessibility, not a disabled dead-end) but only ever show an
- * inert "coming soon" notice — they never navigate.
+ * mounts, before either role's workspace. "Customer" and "Banker" are both
+ * wired up now, each into its own fully independent component tree
+ * (`../customer/` and `../banker/` respectively — see CLAUDE.md rule 1/2
+ * and this journey's folder-isolation requirement between roles). "Admin"
+ * stays fully focusable/keyboard-reachable (real accessibility, not a
+ * disabled dead-end) but only ever shows an inert "coming soon" notice.
  */
-function RoleSelectScreen({ onSelectCustomer, onExit }: RoleSelectScreenProps) {
+function RoleSelectScreen({ onSelectCustomer, onSelectBanker, onExit }: RoleSelectScreenProps) {
   const [inertRole, setInertRole] = useState<InertRole | null>(null);
 
-  const roleLabel: Record<InertRole, string> = { banker: 'Banker', admin: 'Admin' };
+  const roleLabel: Record<InertRole, string> = { admin: 'Admin' };
 
   return (
     <div className="role-select-screen">
@@ -87,10 +91,9 @@ function RoleSelectScreen({ onSelectCustomer, onExit }: RoleSelectScreenProps) {
 
             <button
               type="button"
-              className="role-card role-card--inert"
-              onClick={() => setInertRole('banker')}
+              className="role-card role-card--active"
+              onClick={onSelectBanker}
             >
-              <span className="role-card-badge">Coming soon</span>
               <span className="role-card-icon" aria-hidden="true">
                 <BriefcaseIcon />
               </span>

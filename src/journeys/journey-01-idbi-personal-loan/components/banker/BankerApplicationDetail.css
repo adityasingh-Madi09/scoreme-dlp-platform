@@ -1,0 +1,282 @@
+/* BankerApplicationDetail — banker-local. */
+
+.banker-detail-main {
+  max-width: 1280px;
+}
+
+.banker-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  color: var(--idbi-text-muted);
+  margin-bottom: 14px;
+}
+
+.banker-breadcrumb-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--idbi-green);
+  cursor: pointer;
+}
+
+.banker-breadcrumb-link:hover {
+  text-decoration: underline;
+}
+
+.banker-breadcrumb-current {
+  color: var(--idbi-text-muted);
+}
+
+.banker-detail-summary {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 20px 24px;
+  background: var(--idbi-surface);
+  border: 1px solid var(--idbi-border);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.banker-detail-summary-id {
+  font-size: 11.5px;
+  color: var(--idbi-text-muted);
+}
+
+.banker-detail-summary-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.banker-detail-summary-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--idbi-text);
+}
+
+.banker-detail-summary-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.banker-detail-summary-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.banker-detail-summary-meta-label {
+  font-size: 11px;
+  color: var(--idbi-text-muted);
+}
+
+.banker-detail-summary-meta-value {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--idbi-text);
+}
+
+.banker-detail-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.banker-detail-sidebar {
+  flex: 0 0 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  background: var(--idbi-surface);
+  border: 1px solid var(--idbi-border);
+  border-radius: 10px;
+  position: sticky;
+  top: 20px;
+}
+
+.banker-detail-search {
+  margin-bottom: 10px;
+}
+
+.banker-detail-search input {
+  width: 100%;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  color: var(--idbi-text);
+  background: var(--idbi-bg);
+  border: 1px solid var(--idbi-border);
+  border-radius: 6px;
+  outline: none;
+}
+
+.banker-detail-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-align: left;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--idbi-text-muted);
+  background: none;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.banker-detail-nav-item:hover {
+  background: var(--idbi-bg);
+}
+
+.banker-detail-nav-item--active {
+  color: var(--idbi-green);
+  background: color-mix(in srgb, var(--idbi-green) 10%, var(--idbi-surface));
+}
+
+.banker-detail-content {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.banker-detail-content-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--idbi-text);
+}
+
+.banker-accordion {
+  background: var(--idbi-surface);
+  border: 1px solid var(--idbi-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.banker-accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--idbi-green);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.banker-accordion-chevron {
+  transition: transform 0.15s ease;
+  color: var(--idbi-text-muted);
+}
+
+.banker-accordion-chevron--open {
+  transform: rotate(180deg);
+}
+
+.banker-accordion-body {
+  padding: 4px 20px 20px;
+  border-top: 1px solid var(--idbi-border);
+}
+
+.banker-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px 20px;
+  padding-top: 16px;
+}
+
+.banker-detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.banker-detail-label {
+  font-size: 11px;
+  color: var(--idbi-text-muted);
+}
+
+.banker-detail-value {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--idbi-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.banker-detail-documents-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.banker-download-all-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 18px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--idbi-green);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.banker-download-all-btn:hover {
+  background: var(--idbi-green-dark);
+}
+
+.banker-download-icon {
+  margin-right: 4px;
+  vertical-align: text-bottom;
+}
+
+@media (max-width: 1024px) {
+  .banker-detail-layout {
+    flex-direction: column;
+  }
+
+  .banker-detail-sidebar {
+    flex: none;
+    width: 100%;
+    flex-direction: row;
+    position: static;
+    overflow-x: auto;
+  }
+
+  .banker-detail-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .banker-detail-summary {
+    flex-direction: column;
+  }
+
+  .banker-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}

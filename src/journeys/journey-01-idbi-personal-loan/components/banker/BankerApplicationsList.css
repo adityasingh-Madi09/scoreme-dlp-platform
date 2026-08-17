@@ -1,0 +1,164 @@
+/* BankerApplicationsList — banker-local. `.banker-table*`/`.banker-status-
+   pill*` are shared with BankerApplicationDetail's Documents table, defined
+   once here since this is the first screen that needs them. */
+
+.banker-applications-heading-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.banker-applications-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.banker-search-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 34px;
+  padding: 0 12px;
+  background: var(--idbi-surface);
+  border: 1px solid var(--idbi-border);
+  border-radius: 6px;
+  color: var(--idbi-text-muted);
+}
+
+.banker-search-field input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 13px;
+  color: var(--idbi-text);
+  width: 190px;
+}
+
+.banker-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--idbi-green);
+  background: var(--idbi-surface);
+  border: 1px solid var(--idbi-green);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.banker-filter-btn:hover {
+  background: color-mix(in srgb, var(--idbi-green) 8%, var(--idbi-surface));
+}
+
+.banker-notice-wrap {
+  margin-bottom: 16px;
+}
+
+/* ---------- Table (shared with Documents tab) ---------- */
+
+.banker-table-panel {
+  padding: 0;
+  overflow-x: auto;
+}
+
+.banker-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.banker-table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: var(--idbi-text-muted);
+  padding: 14px 16px;
+  background: var(--idbi-bg);
+  border-bottom: 1px solid var(--idbi-border);
+  white-space: nowrap;
+}
+
+.banker-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--idbi-border);
+  color: var(--idbi-text);
+  white-space: nowrap;
+}
+
+.banker-table tr:last-child td {
+  border-bottom: none;
+}
+
+.banker-table-id-link,
+.banker-view-link {
+  display: inline-flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--idbi-green);
+  cursor: pointer;
+}
+
+.banker-table-id-link:hover,
+.banker-view-link:hover {
+  text-decoration: underline;
+}
+
+.banker-table-empty {
+  text-align: center;
+  color: var(--idbi-text-muted);
+  padding: 32px 16px !important;
+  white-space: normal;
+}
+
+/* ---------- Status pill ---------- */
+
+.banker-status-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 22px;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.banker-status-pill--approved {
+  color: #0ca35f;
+  background: color-mix(in srgb, #1baf7a 14%, white);
+}
+
+.banker-status-pill--pending {
+  color: #a06400;
+  background: color-mix(in srgb, #eda100 16%, white);
+}
+
+.banker-status-pill--in-progress {
+  color: #1c5cab;
+  background: color-mix(in srgb, #2a78d6 14%, white);
+}
+
+.banker-status-pill--rejected {
+  color: #b23a3a;
+  background: color-mix(in srgb, #e34948 14%, white);
+}
+
+@media (max-width: 640px) {
+  .banker-search-field input {
+    width: 130px;
+  }
+}

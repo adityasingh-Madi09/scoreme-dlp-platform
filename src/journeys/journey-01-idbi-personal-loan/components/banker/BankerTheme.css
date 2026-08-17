@@ -1,0 +1,34 @@
+/* IDBI theme tokens — scoped entirely to `.banker-shell`, never touching
+   src/index.css or src/core/theme.css. The Banker workspace deliberately
+   uses IDBI Bank's own brand colors (green/orange) instead of the
+   platform's neutral navy used by the Customer Flow — bankers are working
+   inside their own institution's internal tool, so it should feel like
+   one. Fully independent of components/customer/'s styling: nothing here
+   is read by, or reads from, that folder. */
+
+.banker-shell {
+  --idbi-green: #12805a;
+  --idbi-green-dark: #0e6b4a;
+  --idbi-orange: #f0672a;
+  --idbi-text: #1a1d1f;
+  --idbi-text-muted: #6b7280;
+  --idbi-bg: #f1f5f4;
+  --idbi-surface: #ffffff;
+  --idbi-border: #e3e8e6;
+  --idbi-focus-ring: #2a6fd1;
+
+  /* Retheme the shared core Button primitive for everything inside the
+     Banker workspace — components.css's `.core-btn--primary` already
+     falls back through `var(--btn-primary-bg, var(--brand-navy))`
+     specifically so a scope like this one can override it without
+     forking the Button component itself. */
+  --btn-primary-bg: var(--idbi-green);
+  --btn-primary-bg-hover: var(--idbi-green-dark);
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100svh;
+  background: var(--idbi-bg);
+  color: var(--idbi-text);
+}

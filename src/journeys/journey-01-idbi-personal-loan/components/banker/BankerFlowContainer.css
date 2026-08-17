@@ -1,0 +1,44 @@
+/* BankerFlowContainer — banker-local. Tabs row shown only on Dashboard /
+   All Application (the detail screens use a breadcrumb instead, per the
+   reference). */
+
+.banker-tabs {
+  display: flex;
+  gap: 28px;
+  padding: 0 40px;
+  background: var(--idbi-surface);
+  border-bottom: 1px solid var(--idbi-border);
+}
+
+.banker-tab {
+  padding: 14px 2px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--idbi-text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.banker-tab:hover {
+  color: var(--idbi-text);
+}
+
+.banker-tab--active {
+  color: var(--idbi-green);
+  border-bottom-color: var(--idbi-green);
+}
+
+.banker-tab:focus-visible {
+  outline: 3px solid var(--idbi-focus-ring);
+  outline-offset: 2px;
+}
+
+@media (max-width: 640px) {
+  .banker-tabs {
+    padding: 0 20px;
+    gap: 20px;
+  }
+}

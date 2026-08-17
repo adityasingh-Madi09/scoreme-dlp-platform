@@ -2,17 +2,7 @@ import { useEffect } from 'react';
 import { FileText, Landmark } from 'lucide-react';
 import { Button, SectionCard } from '../../../../core/components';
 import { useCustomerFlow } from '../../context/useCustomerFlow';
-import {
-  LOAN_OFFER_AMOUNT,
-  LOAN_OFFER_APR_PERCENT,
-  LOAN_OFFER_EMI,
-  LOAN_OFFER_INTEREST_RATE_PERCENT,
-  LOAN_OFFER_PROCESSING_FEE,
-  LOAN_OFFER_SUPPORT_EMAIL,
-  LOAN_OFFER_TENURE_MONTHS,
-  formatSanctionDate,
-  generateApplicationId,
-} from '../../mockLoanOffer.constants';
+import { LOAN_OFFER_SUPPORT_EMAIL, formatSanctionDate, generateApplicationId } from '../../mockLoanOffer.constants';
 import './Screen10LoanOffer.css';
 
 const formatRupees = (amount: number) => `₹${amount.toLocaleString('en-IN')}`;
@@ -26,14 +16,23 @@ interface Screen10LoanOfferProps {
 }
 
 /**
+ * SUPERSEDED — not imported or rendered anywhere in the current app.
+ * `CustomerFlowContainer` uses `Step5LoanOffer` (the slider-adjustable
+ * rebuild) instead; this file is a leftover from the original 14-screen
+ * build (see `docs/journey-01-idbi-personal-loan-plan.md`) and should be
+ * deleted from the project. Kept compiling (rather than left broken)
+ * purely so an unused file can't break `tsc -b`/the Vercel build again —
+ * see the fix note in that same plan doc for the incident this caused.
+ *
  * Customer Flow — Screen 10 (Loan Offer). No live application scoring
- * happens here — a mock application ID and a fixed, internally-consistent
- * set of loan terms (see `mockLoanOffer.constants.ts`) are generated once
- * on first mount and shown back to the applicant, alongside a short
- * Key-Fact-Statement-style disclosure box (APR, cooling-off period,
- * grievance contact) modelled on real RBI Digital Lending Guidelines
- * practice, adapted here as realistic prototype content rather than actual
- * legal certification.
+ * happens here — a mock application ID and sanction date are generated
+ * once on first mount; the loan terms themselves now come from context
+ * (`data.loanOfferAmount` etc., pre-seeded in `useCustomerFlow.ts`'s
+ * `initialCustomerFlowData`), same source `Step5LoanOffer` reads from.
+ * Alongside a short Key-Fact-Statement-style disclosure box (APR,
+ * cooling-off period, grievance contact) modelled on real RBI Digital
+ * Lending Guidelines practice, adapted here as realistic prototype content
+ * rather than actual legal certification.
  *
  * "Accept Offer" advances to Screen 11. "Reject Offer" does not — it shows
  * a graceful terminal state in-place (no dead end, no crash), with an exit
@@ -51,12 +50,6 @@ function Screen10LoanOffer({ onExit }: Screen10LoanOfferProps) {
     updateData({
       applicationId: generateApplicationId(),
       loanOfferSanctionDate: formatSanctionDate(),
-      loanOfferAmount: LOAN_OFFER_AMOUNT,
-      loanOfferTenureMonths: LOAN_OFFER_TENURE_MONTHS,
-      loanOfferInterestRatePercent: LOAN_OFFER_INTEREST_RATE_PERCENT,
-      loanOfferProcessingFee: LOAN_OFFER_PROCESSING_FEE,
-      loanOfferEmi: LOAN_OFFER_EMI,
-      loanOfferAprPercent: LOAN_OFFER_APR_PERCENT,
     });
   }, [data.applicationId, updateData]);
 
@@ -108,7 +101,7 @@ function Screen10LoanOffer({ onExit }: Screen10LoanOfferProps) {
           <div className="screen-loan-offer-meta-item">
             <span className="screen-loan-offer-meta-label">Processing Fee</span>
             <span className="screen-loan-offer-meta-value">
-              {formatRupees(LOAN_OFFER_PROCESSING_FEE)}
+              {formatRupees(data.loanOfferProcessingFee)}
             </span>
           </div>
         </div>
@@ -118,23 +111,23 @@ function Screen10LoanOffer({ onExit }: Screen10LoanOfferProps) {
             <div className="screen-loan-offer-tile">
               <span className="screen-loan-offer-tile-label">Loan Amount</span>
               <span className="screen-loan-offer-tile-value">
-                {formatRupees(LOAN_OFFER_AMOUNT)}
+                {formatRupees(data.loanOfferAmount)}
               </span>
             </div>
             <div className="screen-loan-offer-tile">
               <span className="screen-loan-offer-tile-label">EMI</span>
-              <span className="screen-loan-offer-tile-value">{formatRupees(LOAN_OFFER_EMI)}</span>
+              <span className="screen-loan-offer-tile-value">{formatRupees(data.loanOfferEmi)}</span>
             </div>
             <div className="screen-loan-offer-tile">
               <span className="screen-loan-offer-tile-label">Loan Tenure</span>
               <span className="screen-loan-offer-tile-value">
-                {LOAN_OFFER_TENURE_MONTHS} months
+                {data.loanOfferTenureMonths} months
               </span>
             </div>
             <div className="screen-loan-offer-tile">
               <span className="screen-loan-offer-tile-label">Interest Rate</span>
               <span className="screen-loan-offer-tile-value">
-                {LOAN_OFFER_INTEREST_RATE_PERCENT}% p.a.
+                {data.loanOfferInterestRatePercent}% p.a.
               </span>
             </div>
           </div>
@@ -149,7 +142,7 @@ function Screen10LoanOffer({ onExit }: Screen10LoanOfferProps) {
               Annual Percentage Rate (APR)
             </span>
             <span className="screen-loan-offer-kfs-apr-value">
-              {LOAN_OFFER_APR_PERCENT}% p.a.
+              {data.loanOfferAprPercent}% p.a.
             </span>
           </div>
           <p className="screen-loan-offer-kfs-line">
